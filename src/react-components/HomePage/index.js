@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ProductList from '../Product/ProductList';
 import Firebase from 'firebase';
 
-class HomePage extends React.Component {
+class HomePage extends Component {
   constructor() {
     super();
     this.state = {
