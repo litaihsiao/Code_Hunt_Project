@@ -19561,8 +19561,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var HomePage = function (_React$Component) {
-  _inherits(HomePage, _React$Component);
+var HomePage = function (_Component) {
+  _inherits(HomePage, _Component);
 
   function HomePage() {
     _classCallCheck(this, HomePage);
@@ -19619,7 +19619,7 @@ var HomePage = function (_React$Component) {
   }]);
 
   return HomePage;
-}(_react2.default.Component);
+}(_react.Component);
 
 exports.default = HomePage;
 
@@ -19642,6 +19642,10 @@ var _Popup = require('./Popup');
 
 var _Popup2 = _interopRequireDefault(_Popup);
 
+var _firebase = require('firebase');
+
+var _firebase2 = _interopRequireDefault(_firebase);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19654,9 +19658,36 @@ var LoginPopup = function (_React$Component) {
   _inherits(LoginPopup, _React$Component);
 
   function LoginPopup() {
+    var _Object$getPrototypeO;
+
+    var _temp, _this, _ret;
+
     _classCallCheck(this, LoginPopup);
 
-    return _possibleConstructorReturn(this, Object.getPrototypeOf(LoginPopup).apply(this, arguments));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(LoginPopup)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.handleLogin = function () {
+      var provider = new firebase.auth.FacebookAuthProvider();
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+        // add console.log to show user
+        console.log('longin successfully', user);
+      }).catch(function (error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+        // ...
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(LoginPopup, [{
@@ -19678,7 +19709,7 @@ var LoginPopup = function (_React$Component) {
         ),
         _react2.default.createElement(
           'button',
-          { className: 'facebook-btn' },
+          { className: 'facebook-btn', onClick: this.handleLogin },
           'Login with Facebook'
         ),
         _react2.default.createElement(
@@ -19695,7 +19726,7 @@ var LoginPopup = function (_React$Component) {
 
 exports.default = LoginPopup;
 
-},{"./Popup":162,"react":159}],162:[function(require,module,exports){
+},{"./Popup":162,"firebase":1,"react":159}],162:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20535,7 +20566,7 @@ var App = function (_React$Component) {
       return _react2.default.createElement(
         'section',
         null,
-        _react2.default.createElement(_Navbar2.default, { user: true }),
+        _react2.default.createElement(_Navbar2.default, { user: false }),
         _react2.default.createElement(_HomePage2.default, null)
       );
     }
