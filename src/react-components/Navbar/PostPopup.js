@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Popup from './Popup';
+import Actions from '../../actions';
 
-class PostPopup extends React.Component {
+class PostPopup extends Component {
   handlePost = () => {
 
   };

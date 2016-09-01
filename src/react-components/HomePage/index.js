@@ -16,11 +16,11 @@ class HomePage extends Component {
       databaseURL: "https://codehunting-d2b7c.firebaseio.com/",
       storageBucket: "gs://codehunting-d2b7c.appspot.com",
     };
-    firebase.initializeApp(config);
+    
 
-    var db = firebase.database();
-    var firebaseRef = db.ref("/products");
-    firebaseRef.on('value', (snapshot) => {
+    var firebaseRef = firebase.database();
+    var productRef = firebaseRef.ref("/products");
+    productRef.on("value",(snapshot) =>{
       var products = snapshot.val();
 
       this.setState({

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Actions from '../../actions';
 
 class ProfileMenu extends Component {
 	constructor() {
@@ -16,12 +17,17 @@ class ProfileMenu extends Component {
 			this.setState({showProfileNav: true})
 		}
 	};
-	
+
 	handleClickOutside = (e) => {
 		if (e.target != this.refs.profileBtn) {
 			this.setState({showProfileNav: false})
 		}
 	};
+
+	handleLogout = (e) => {
+    	e.preventDefault();
+    	Actions.logout();
+  	};
 
 	componentWillMount() {
 		window.addEventListener("click", this.handleClickOutside, false);
@@ -35,7 +41,7 @@ class ProfileMenu extends Component {
 		return (
 		    <nav className="profile-nav" ref="profileNav">
 				<a href="#">My Porfile</a>
-				<a href="#">LogOut</a>
+				<a href="#" onClick={this.handleLogout}>LogOut</a>
 		    </nav>
 		);
 	}
@@ -43,7 +49,7 @@ class ProfileMenu extends Component {
 	render() {
 		return (
 			<section className="profile-menu">
-				<img src="/img/Tony.jpg" onClick={this.handleClick} className="profile-btn medium-avatar" ref="profileBtn"/>
+				<img src= {this.props.user.avatar} onClick={this.handleClick} className="profile-btn medium-avatar" ref="profileBtn"/>
 				{
 					this.state.showProfileNav ? this.renderProfileNav() : null
 				}
