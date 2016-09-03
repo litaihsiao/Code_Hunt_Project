@@ -8,28 +8,27 @@ import Actions from '../actions';
 
 @connectToStores
 class App extends React.Component {
-  constructor() {
-    super();
-    Actions.initSession();
-  }
+    constructor() {
+        super();
+        Actions.initSession();
+    }
 
-  static getStores() {
-    return [ProductStore]
-  }
+    static getStores() {
+        return [ProductStore]
+    }
 
-  static getPropsFromStores() {
-    return ProductStore.getState();
-  }
+    static getPropsFromStores() {
+        return ProductStore.getState();
+    }
 
-
-  render() {
-    return (
-      <section>
-        <Navbar user={this.props.user} />
-        <HomePage />
-      </section>
-    );
-  }
+    render() {
+        return (
+            <section>
+                <Navbar user={this.props.user}/>
+                <HomePage />
+            </section>
+        );
+    }
 }
 
 ReactDOM.render(<App/>, document.getElementById('root'));
