@@ -1,2 +1,2 @@
 # Code_Hunt_Project
-Clone the website "codehunt" as a practice
+Clone the website "Product Hunt" as a practice
